@@ -1,0 +1,60 @@
+class Emp{
+	int EmpId;
+	String name;
+	public void Input(int id, String n){
+		EmpId=id;
+		name=n;
+	}
+	public void print(){
+		System.out.print("Emp: id: "+ EmpId + " Name: "+ name);
+	}
+}
+class Mngr extends Emp{
+	String dept;
+	public void InputMngr(int id, String n, String de){
+		Input(id,n);
+		dept=de;
+	}
+	public void printMngr(){
+		print();
+		System.out.println(" department: "+ dept);
+	}
+}
+class SE extends Emp{
+	String language;
+	public void InputSE(int id, String n, String l){
+		Input(id,n);
+		language=l;
+	}
+	public void printSE(){
+		print();
+		System.out.println(" Language: "+ language);
+	}
+}
+public class InheritanceClass {
+
+	public static void main(String[] args) {
+		Emp e=new Emp();
+		e.Input(101, "Abc");
+		e.print();
+		Mngr m=new Mngr();
+		m.Input(102, "AbcMngr");
+		m.print();
+		m.InputMngr(102, "AbcMngr", "IT");
+		m.printMngr();
+		Emp em = new Mngr();  //upcasting
+		em.Input(103, "MngrEmp");
+		em.print();
+		Mngr me = (Mngr)em; //downcasting
+		me.InputMngr(103, "MngrEmp", "HR");
+		me.printMngr();
+//		Mngr me2 = (Mngr)e; //downcasting
+//		me2.InputMngr(104, "MngrEmp2", "SE");
+//		me2.printMngr();
+		if(em instanceof SE){
+			SE se=(SE)em; //error in this line
+		}
+
+	}
+
+}
