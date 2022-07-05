@@ -1,0 +1,33 @@
+
+public class PolyMorpClass {
+	//Overloading
+	public void print(){ //Fn1
+		System.out.println("Hello from print()");
+	}
+	public void print(int x){ //Fn2: Case 2: different number of parameters with fn1
+		System.out.println("Hello from print(int x), x: " + x);
+	}
+	public void print(int x, double y){ //Fn 3: Case 2: different number of parameters with fn1, fn2
+		System.out.println("Hello from print(int x, double y), x: " + x + " , y: " +y);
+	}
+	public void print(double x, int y){ //Fn 4: Case 3: different series of parameters with fn3
+		System.out.println("Hello from print(double x, int y), x: " + x + " , y: " +y);
+	}
+	public void print(double x){ //Fn 5: Case 1: different data type of parameters with fn2
+		System.out.println("Hello from print(double x), x: " + x);
+	}
+	
+	
+	public static void main(String[] args) {
+		//Object creation:
+		PolyMorpClass p=new PolyMorpClass();
+		p.print();
+		p.print(12);
+		p.print(12.9);
+		p.print(12,89.6);
+		p.print(12.9,7);
+		System.out.println("Bye from print()");
+
+	}
+
+}
