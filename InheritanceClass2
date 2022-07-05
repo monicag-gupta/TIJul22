@@ -1,0 +1,94 @@
+class Emp{  //generalized class
+	int EmpId;
+	String name;
+	public void Input(int id, String n){
+		EmpId=id;
+		name=n;
+	}
+	public void print(){
+		System.out.print("Emp: id: "+ EmpId + " Name: "+ name);
+	}
+}
+class Mngr extends Emp{ //specialized class
+	String dept;
+	public void InputMngr(int id, String n, String de){
+		Input(id,n);
+		dept=de;
+	}
+	public String getDept(){
+		return dept;
+	}
+	public void printMngr(){
+		print();
+		System.out.println(" department: "+ dept);
+	}
+}
+class SE extends Emp{ //specialized class
+	String language;
+	public void InputSE(int id, String n, String l){
+		Input(id,n);
+		language=l;
+	}
+	public String getLanguage(){
+		return language;
+	}
+	public void printSE(){
+		print();
+		System.out.println(" Language: "+ language);
+	}
+}
+public class InheritanceClass {
+	//Dependency Inversion Control
+	public void holiday(Emp e){      //Generalization
+		
+		System.out.println("Holiday Package for :");
+		if(e instanceof Mngr){
+			Mngr m=(Mngr)e;     //Specialization
+			m.printMngr();
+			System.out.println(m.getDept()+ " assigned to VP");
+		}
+		if(e instanceof SE){
+			SE se=(SE)e;
+			se.printSE();
+			System.out.println(se.getLanguage() + " Language expert hired for backup");
+
+		}
+		System.out.println("  Enjoy :)");
+	}
+
+	public static void main(String[] args) {
+		Mngr m=new Mngr();
+		SE se=new SE();
+		m.InputMngr(101, "Mngr1", "HR");
+		se.InputSE(102, "SE1", "Java");
+		InheritanceClass iC=new InheritanceClass();
+		iC.holiday(m);
+		iC.holiday(se);
+		
+		
+		
+		
+//		Emp e=new Emp();
+//		e.Input(101, "Abc");
+//		e.print();
+//		Mngr m=new Mngr();
+//		m.Input(102, "AbcMngr");
+//		m.print();
+//		m.InputMngr(102, "AbcMngr", "IT");
+//		m.printMngr();
+//		Emp em = new Mngr();  //upcasting
+//		em.Input(103, "MngrEmp");
+//		em.print();
+//		Mngr me = (Mngr)em; //downcasting
+//		me.InputMngr(103, "MngrEmp", "HR");
+//		me.printMngr();
+////		Mngr me2 = (Mngr)e; //downcasting
+////		me2.InputMngr(104, "MngrEmp2", "SE");
+////		me2.printMngr();
+//		if(em instanceof SE){
+//			SE se=(SE)em; //error in this line
+//		}
+
+	}
+
+}
