@@ -1,0 +1,31 @@
+class AA{
+	public void fn(){
+		System.out.println("Implemented fn in interface A");
+	}
+//	void fnAbs();
+}
+interface AB{ 
+	void fn();
+	void fnAbs();
+}
+interface AB2{ 
+	void fn();
+	void fnAbs();
+}
+class BA extends AA implements AB,AB2{
+	public void fnAbs(){
+		System.out.println("Implemented fnAbs in child/Concrete class B");
+	}
+	public void fn(){
+		System.out.println("Implemented fn in child due to diamond problem");
+	}
+}
+
+public class Demo{
+	public static void main(String[] args) {
+		BA a=new BA();
+		a.fn();
+		a.fnAbs();
+		System.out.println("\nEnd of Main()");
+	}
+}
