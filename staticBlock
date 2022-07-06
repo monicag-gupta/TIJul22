@@ -1,0 +1,28 @@
+class A{
+	{
+		System.out.println("5/7. I am in A : in initializer block");
+	}
+	public A(){
+		System.out.println("6/8. I am in A : constructor");
+		
+	}
+	static{
+		System.out.println("3. I am in A: static block");
+	}
+	static void fn(){
+		System.out.println("4/9. I am in A: static fn(): Fn() called on demand");
+	}
+}
+public class Demo{
+	static{
+		System.out.println("1. I am in static block");
+	}
+	public static void main(String[] args) {
+		System.out.println("2. I am in main()");
+		A.fn();
+		A a1=new A();
+		A a2=new A();
+		a1.fn();
+		
+	}
+}
