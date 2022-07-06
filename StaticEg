@@ -1,0 +1,47 @@
+class Std{
+	int stdId; //instance fields
+	String name;
+	public static String InstName;
+	
+	public int getStdId() {
+		return stdId;
+	}
+	public void setStdId(int stdId) {
+		this.stdId = stdId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String toString() {
+		return "Std [stdId=" + stdId + ", name=" + name + ", InstName="
+				+ InstName + "]\n";
+	}
+	public Std(int stdId, String name) {
+		this.stdId = stdId;
+		this.name = name;
+	}
+	public Std() {
+		
+	}
+	
+	
+}
+
+public class Demo{
+	public static void main(String[] args) {
+		Std.InstName="Inst1";
+		Std s1=new Std(101,"a1");
+		Std s2=new Std(102,"a2");
+		
+		System.out.println(s1.toString() + s2);
+		System.out.println("Inst name changed to Org1");
+		Std.InstName="Org1";
+		System.out.println(s1.toString() + s2);
+		
+		System.out.println("\nEnd of Main()");
+	}
+}
