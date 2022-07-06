@@ -1,0 +1,38 @@
+class A{
+	private int rOnly=101;
+	public int getROnly(){
+		return rOnly;
+	}
+	private String wOnly;
+	public void setWOnly(String s){
+		wOnly=s;
+	}
+	private String wOnce;
+	public String getwOnce() {
+		return wOnce;
+	}
+	public void setwOnce(String wOnce) {
+		if(this.wOnce == null)
+			this.wOnce = wOnce;
+	}
+	@Override
+	public String toString() {
+		return "A [rOnly=" + rOnly + ", wOnly=" + wOnly + ", wOnce=" + wOnce
+				+ "]";
+	}
+	
+}
+public class Demo{
+	
+	public static void main(String[] args) {
+
+		A a=new A();
+		int x=a.getROnly();
+		a.setWOnly("StringSet for writeOnly");
+		a.setWOnly("StringSet22222 for writeOnly");
+		a.setwOnce("A value");
+		a.setwOnce("A2 value");
+		System.out.println(a);
+		System.out.println("\nEnd of Main()");
+	}
+}
