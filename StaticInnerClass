@@ -1,0 +1,29 @@
+class A{ //outer class
+	class B{ //inner class
+		public void fn(){
+			System.out.println("I am in A.B class");
+		}
+		
+	}
+	static class C{ //Static inner class
+		public void fn(){
+			System.out.println("I am in A.C inner static class");
+		}
+		public static void fn2(){
+			System.out.println("I am in A.C inner static class: inner static fn2");
+		}
+	}
+	
+}
+public class Demo{
+	
+	public static void main(String[] args) {
+		A a=new A();
+		A.B b=a.new B();
+		b.fn();
+//		A.C c=new A.C();
+//		c.fn();
+		A.C.fn2();
+		
+	}
+}
