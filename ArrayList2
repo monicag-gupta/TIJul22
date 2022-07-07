@@ -1,0 +1,31 @@
+import java.util.*;
+public class ArrayListClass {
+public static void main(String[] args) {
+	List<Integer> a=new ArrayList<>();
+	//an array of 10 elements is created, it is 50% growable
+	//when 11th ele is added the size becomes: 15
+	//when 16th ele is added the size becomes: 23
+//	a.add("A");a.add("B");a.add("A");a.add("H");a.add("C");
+//	System.out.println("Original eles: " + a);
+//	System.out.println("Size is: " + a.size());
+////	for(int i=0; i<a.size();i++){
+////		System.out.print(a.get(i) + "\t");
+////	}
+//	a.add(3,"D");
+//	System.out.println("With add(3,D): " + a);
+//	a.remove(2);
+//	a.remove(a.indexOf("H"));
+//	System.out.println("With remove(2): " + a);
+//	a.remove("H");
+//	System.out.println("With remove(H): " + a);
+//	
+	
+	
+	a.add(1);a.add(4);a.add(9);a.add(4);
+	System.out.println(a);
+	//a.remove(4);
+	a.remove(a.indexOf(4));
+	System.out.println("After remove" + a);
+	
+}
+}
