@@ -14,6 +14,15 @@ public class MapClass {
         System.out.println("\nThe Set of Keys:  " + fruit.keySet());
         System.out.println("The List of Values:  " + fruit.values());
         System.out.println("The Map.Entry Set of Elements:  " + fruit.entrySet());
+        Set<Map.Entry<String, String>> set = fruit.entrySet(); // Get a set of the entries
+        Iterator<Map.Entry<String, String>> i = set.iterator();
+		// Display elements
+		while (i.hasNext()) {
+			Map.Entry<String, String> me = (Map.Entry<String, String>) i.next();
+			System.out.print(me.getKey() + ": ");
+			System.out.println(me.getValue());
+		}
+
     }
 }
 
