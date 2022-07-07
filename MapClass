@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class MapClass {
+
+    public static void main(String[] args) {
+        Map<String, String> fruit = new HashMap<String, String>();
+        fruit.put("Apple", "red");
+        fruit.put("Pear", "yellow");
+        fruit.put("Plum", "purple");
+        fruit.put("Cherry", "red");
+        for (String key : fruit.keySet()) {
+            System.out.print(key + ": " + fruit.get(key)+ " \t");
+        }
+        System.out.println("\nThe Set of Keys:  " + fruit.keySet());
+        System.out.println("The List of Values:  " + fruit.values());
+        System.out.println("The Map.Entry Set of Elements:  " + fruit.entrySet());
+    }
+}
+
+
