@@ -1,9 +1,9 @@
-class A<T>
+class A<T, U>
 {
 	T x;
-	T y;
+	U y;
 	public A(){}
-	public A(T x, T y){
+	public A(T x, U y){
 		this.x=x;this.y=y;
 	}
 	public String toString(){
@@ -28,11 +28,11 @@ class Emp1234{
 public class GenericClass {
 
 	public static void main(String[] args) {
-		A<Integer> ai = new A<Integer>(24, 89);
+		A<Integer, Double> ai = new A<Integer,Double>(24, 89.8);
 		System.out.println(ai);
-		A<String> as = new A<>("1st","2nd");
+		A<String, Integer> as = new A<>("1st",2);
 		System.out.println(as);
-		A<Emp1234> ae= new A<>(new Emp1234(101,"Abc"),new Emp1234(102,"Xyz"));
+		A<Integer, Emp1234> ae= new A<>(101,new Emp1234(101,"Xyz"));
 		System.out.println(ae);	
 	}
 
