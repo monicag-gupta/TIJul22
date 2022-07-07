@@ -1,0 +1,39 @@
+class A<T>
+{
+	T x;
+	T y;
+	public A(){}
+	public A(T x, T y){
+		this.x=x;this.y=y;
+	}
+	public String toString(){
+		return "x = " + x + "\n y = " + y; 
+	}
+	
+}
+class Emp1234{
+	int eid;
+	String name;
+	public Emp1234(int eid, String name) {
+		this.eid = eid;
+		this.name = name;
+	}
+	public Emp1234(){}
+	@Override
+	public String toString() {
+		return "Emp1234 [eid=" + eid + ", name=" + name + "]";
+	}
+	
+}
+public class GenericClass {
+
+	public static void main(String[] args) {
+		A<Integer> ai = new A<Integer>(24, 89);
+		System.out.println(ai);
+		A<String> as = new A<>("1st","2nd");
+		System.out.println(as);
+		A<Emp1234> ae= new A<>(new Emp1234(101,"Abc"),new Emp1234(102,"Xyz"));
+		System.out.println(ae);	
+	}
+
+}
