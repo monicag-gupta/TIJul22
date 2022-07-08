@@ -1,0 +1,32 @@
+import java.util.*;
+class Emp implements Comparable<Emp>{
+	int eid;
+	String empName;
+	public Emp(int eid, String empName) {
+		this.eid = eid;
+		this.empName = empName;
+	}
+	public Emp(){}
+	public String toString() {
+		return "\nEmp [eid=" + eid + ", empName=" + empName + "]";
+	}
+	public int compareTo(Emp e){
+		//return this.eid - e.eid;
+		//return e.eid - this.eid;
+		return this.empName.compareTo(e.empName);
+	}
+}
+
+public class SortClass1 {
+
+	public static void main(String[] args) {
+		List<Emp> l=new ArrayList<>();
+		l.add(new Emp(101,"Raju"));
+		l.add(new Emp(105,"Rajeev"));
+		l.add(new Emp(109,"Rajkishore"));
+		l.add(new Emp(107,"Aman"));
+		System.out.println("Before Sorting : " + l);
+		Collections.sort(l);
+		System.out.println("After Sorting : " + l);
+	}
+}
