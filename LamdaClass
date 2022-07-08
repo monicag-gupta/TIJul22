@@ -1,0 +1,49 @@
+interface A1 { //Interfaces with Single Abstract Method (SAM) are called Functional Interface
+	void fn1(); //fn has no parameter and no return type
+}
+interface A2{
+	int fn2();//FI's SAM has a return type
+}
+interface A3{
+	void fn3(int x);//FI's SAM has only 1 parameter without return value
+}
+interface A4{
+	int fn4(String str);//FI's SAM has only 1 parameter with return value
+}
+interface A5{
+	int fn5(int x, int y);//FI's SAM has only 2 parameter with return value
+}
+
+public class Main { 
+
+	public static void main(String[] args) {
+		//FI obj= (paramList) ->  statements;
+		A1 o1 = () ->	System.out.println("Hi from Lamda");
+		o1.fn1(); //Hi from Lamda
+		A2 o21= () -> 0; 
+		System.out.println(o21.fn2()); //0
+		A2 o22= () -> {return 6;}; 
+		System.out.println(o22.fn2()); //0
+		A3 o31=(int x)->System.out.println(x*5);
+		o31.fn3(5); //25
+		A3 o32=(x)->System.out.println(x*x);
+		o32.fn3(7); //49
+		A3 o33 = x ->System.out.println(x*10);
+		o33.fn3(5); //50
+		A4 o41 = s -> s.length();
+		System.out.println(o41.fn4("HEllo World"));//11
+		A4 o42 = s -> {
+			System.out.println("The String is : " + s);
+			return s.length();
+		};
+		System.out.println(o42.fn4("HEllo World"));//The String is HEllo World \n 11
+		
+		A5 o51=(int x, int y) -> x + y;
+		System.out.println(o51.fn5(3, 4));//7
+		A5 o52=(x, y) -> x + y;
+		System.out.println(o52.fn5(3, 4));//7
+		A5 o53=(x, y) -> { return (x + y); };
+		System.out.println(o53.fn5(3, 4));//7
+	}
+
+}
