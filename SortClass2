@@ -1,0 +1,49 @@
+import java.util.*;
+class Emp implements Comparable<Emp>{
+	int eid;
+	String empName;
+	int Sal;
+	public Emp(int eid, String empName, int Sal) {
+		this.eid = eid;
+		this.empName = empName;
+		this.Sal = Sal;
+	}
+	public Emp(){}
+	public String toString() {
+		return "\nEmp [eid=" + eid + ", empName=" + empName + ", Sal=" + Sal + "]";
+	}
+	public int compareTo(Emp e){
+		//return this.eid - e.eid;
+		//return e.eid - this.eid;
+		return this.empName.compareTo(e.empName);
+	}
+}
+class SortingSal implements Comparator<Emp>{
+	public int compare(Emp e1, Emp e2){
+		//return this.eid - e.eid;
+		//return e.eid - this.eid;
+		return e1.Sal - e2.Sal;
+	}
+}
+class SortingID implements Comparator<Emp>{
+	public int compare(Emp e1, Emp e2){
+		return e1.eid - e2.eid;
+	}
+}
+public class SortClass1 {
+
+	public static void main(String[] args) {
+		List<Emp> l=new ArrayList<>();
+		l.add(new Emp(101,"Amit",10));
+		l.add(new Emp(105,"Nitin",13));
+		l.add(new Emp(109,"Rajkishore",8));
+		l.add(new Emp(107,"Jay",15));
+		System.out.println("Before Sorting : " + l);
+		Collections.sort(l);
+		System.out.println("After Sorting accoring to name : " + l);
+		Collections.sort(l, new SortingSal());
+		System.out.println("After Sorting accoring to Sal : " + l);
+		Collections.sort(l, new SortingID());
+		System.out.println("After Sorting accoring to EmpID : " + l);
+	}
+}
