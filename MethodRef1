@@ -1,0 +1,46 @@
+class A{
+	public void fn1(){
+		System.out.println("Instance function");
+	}
+	public static void fn2(){
+		System.out.println("Static/Class function");
+	}
+	public A(){
+		System.out.println("Constructor");
+	}
+	//Arbitrary functions from Java (JVM) Objects
+	//String s; s.toLower();
+}
+interface FI{
+	void sam();
+}
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		A a=new A();
+
+		FI fi1=()->a.fn1();
+		fi1.sam();
+		FI fi2 = a :: fn1;
+		fi2.sam();
+		
+		FI fi3 = () -> A.fn2(); 
+		fi3.sam();
+		FI fi4 = A :: fn2;
+		fi4.sam();
+		
+		FI fi5 = () -> new A(); 
+		fi5.sam();
+		FI fi6 = A :: new;
+		fi6.sam();
+		
+		FI fi7 = () -> System.out.println(); 
+		fi7.sam();
+		FI fi8 = System.out :: println;
+		fi8.sam();
+		
+	}
+
+}
