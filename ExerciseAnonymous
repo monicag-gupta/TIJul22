@@ -1,0 +1,66 @@
+import java.util.*;
+
+interface MathOp {
+	int operation(int x, int y);
+}
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		MathOp add = new MathOp() {
+			public int operation(int x, int y) {
+				return x + y;
+			}
+		};
+		MathOp sub = new MathOp() {
+			public int operation(int x, int y) {
+				return x > y ? x - y : y - x;
+			}
+		};
+		MathOp mul = new MathOp() {
+			public int operation(int x, int y) {
+				return x * y;
+			}
+		};
+		MathOp div = new MathOp() {
+			public int operation(int x, int y) {
+				return y == 0 ? 0 : x / y;
+			}
+		};
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("Enter a number: ");
+			int x = sc.nextInt();
+			System.out.println("Enter another number: ");
+			int y = sc.nextInt();
+			System.out
+					.println("Enter the Operation required: 1.Add, 2.Sub 3. Mul 4. Div: ");
+			int ch = sc.nextInt();
+			if (ch >= 1 && ch <= 4) {
+				if (ch == 1) {
+					System.out.println("Result of addition : "
+							+ add.operation(x, y));
+				}
+				if (ch == 2) {
+					System.out.println("Result of Subtraction : "
+							+ sub.operation(x, y));
+				}
+				if (ch == 3) {
+					System.out.println("Result of multiplication : "
+							+ mul.operation(x, y));
+				}
+				if (ch == 4) {
+					System.out.println("Result of division : "
+							+ div.operation(x, y));
+				}
+			} else{
+				System.out.println("Code Ends..");
+				break;
+			}
+				
+		}
+
+	}
+
+}
