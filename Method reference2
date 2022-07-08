@@ -1,0 +1,55 @@
+class A{
+	public int fn1(String str){
+		System.out.println("Instance function with Parameter: " + str);
+		return 0;
+	}
+	public static int fn2(String str){
+		System.out.println("Class/Static function with Parameter: " + str);
+		return 10;
+	}
+	public A(){
+		System.out.println("Constructor");
+	}
+	//Arbitrary functions from Java (JVM) Objects
+	//String s; s.toLower();
+}
+interface FI{
+	int sam(String s);
+}
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		FI fi=new FI(){
+			public int sam(String s){
+				return new A().fn1(s);
+			}
+		};
+		
+		FI fi1 = s -> new A().fn1(s);
+		System.out.println("Res of fi1: " + fi1.sam("Hello")); 
+		FI fi2 = new A() :: fn1;
+		System.out.println("Res of fi2: " + fi2.sam("Hello"));
+		
+		FI fi3 = s -> A.fn2(s);
+		System.out.println("Res of fi3: " + fi3.sam("Hello")); 
+		FI fi4 = A :: fn2;
+		System.out.println("Res of fi4: " + fi4.sam("Hello"));
+		
+		
+		//String str="Abc"; int len=str.length();
+		FI fi5 = s -> s.length();
+		System.out.println("Res of fi5: " + fi5.sam("Hello")); 
+		FI fi6 = String :: length;
+		System.out.println("Res of fi6: " + fi6.sam("Hello"));
+		
+		
+		//String s="Hello"; s.length();
+		
+		
+		
+		
+	}
+
+}
