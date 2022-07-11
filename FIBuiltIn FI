@@ -18,6 +18,16 @@ public class FIBuiltInClass {
 		Consumer<Integer> printOp=printSq.andThen(printCub);
 		System.out.println("Square and Cube Consumer.accept(5): "); 
 		printOp.accept(5);
+		
+		Function<Integer,Integer> pSq=x -> {System.out.println("\nThe Square is: " + (x*x)); return (x*x);};
+		Function<Integer,Integer> pCu=x -> {System.out.println("\nThe Cube is: " + (x* x * x)); return (x*x*x);};
+		Function<Integer,Integer> pSqCu=pSq.andThen(pCu);
+		Function<Integer,Integer> pCuSq=pSq.compose(pCu);
+		
+		System.out.println(pSqCu.apply(5));
+		System.out.println(pCuSq.apply(5));
+		
+		
 	}
 
 }
