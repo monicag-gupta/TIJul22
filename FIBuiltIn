@@ -1,6 +1,15 @@
 interface myPredicate<T>{
 	Boolean test(T o);
 }
+interface myConsumer<T>{
+	void accept(T o);
+}
+interface mySupplier<T>{
+	T get();
+}
+interface myFunction<T,R>{
+	R apply(T o);
+}
 class A{
 	public static Boolean aTestInt(Integer x){
 		return x>0?true:false;
@@ -19,6 +28,14 @@ public class FIBuiltInClass {
 			System.out.println(positivity.test(10));
 			myPredicate<String> nonEmptiness = A::aTestString;
 			System.out.println(nonEmptiness.test(""));
+			myConsumer<String> print=System.out::println;
+			print.accept("Hello World");
+			mySupplier<Integer> ten=()->10;
+			System.out.println(ten.get());
+			
+			myFunction<String,Integer> len= String::length;
+			System.out.println(len.apply("Hello World to all"));
+			
 
 	}
 
