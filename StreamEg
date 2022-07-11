@@ -11,6 +11,14 @@ public class MapEg {
 		System.out.println("After map->i*i, the list: " + squaresList);
 		squaresList = numbers.stream().map( i -> i*i).distinct().collect(Collectors.toList());
 		System.out.println("After Distinct() : " + squaresList);
+		System.out.println("\nPeek() running in the stream operations: ");
+		squaresList = numbers.stream()
+				.distinct()
+				.peek(i->System.out.print(i+ " : "))
+				.map( i -> i*i)
+				.peek(i->System.out.print(i+ ", "))
+				.collect(Collectors.toList());
+		System.out.println("\nAfter Distinct() : " + squaresList);
 
 	}
 
