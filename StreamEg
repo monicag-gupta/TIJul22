@@ -12,6 +12,7 @@ public class MapEg {
 		squaresList = numbers.stream().map( i -> i*i).distinct().collect(Collectors.toList());
 		System.out.println("After Distinct() : " + squaresList);
 		System.out.println("\nPeek() running in the stream operations: ");
+		//Lazy preocessing
 		squaresList = numbers.stream()
 				.distinct()
 				.peek(i->System.out.print(i+ " : "))
@@ -19,6 +20,25 @@ public class MapEg {
 				.peek(i->System.out.print(i+ ", "))
 				.collect(Collectors.toList());
 		System.out.println("\nAfter Distinct() : " + squaresList);
+		
+		
+		//Eager Processing:
+		squaresList = numbers.stream()
+				.distinct().collect(Collectors.toList());
+		squaresList = numbers.stream()
+				.peek(i->System.out.print(i+ " : ")) //3 : 			2:
+				.collect(Collectors.toList());
+		squaresList = numbers.stream()
+				.map( i -> i*i)
+				.collect(Collectors.toList());
+		squaresList = numbers.stream()
+				.peek(i->System.out.print(i+ ", ")) //9, 			4,
+				.collect(Collectors.toList());
+		System.out.println("\nAfter Modification() : " + squaresList);
+		
+		
+		
+		
 
 	}
 
