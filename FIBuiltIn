@@ -1,0 +1,25 @@
+interface myPredicate<T>{
+	Boolean test(T o);
+}
+class A{
+	public static Boolean aTestInt(Integer x){
+		return x>0?true:false;
+	}
+	public static Boolean aTestString(String x){
+		return x.length()>0?true:false;
+	}
+	
+}
+public class FIBuiltInClass {
+
+	public static void main(String[] args) {
+			myPredicate<Integer> positivity = x-> x>0?true:false;
+			//A::aTest;
+			System.out.println(positivity.test(-10));
+			System.out.println(positivity.test(10));
+			myPredicate<String> nonEmptiness = A::aTestString;
+			System.out.println(nonEmptiness.test(""));
+
+	}
+
+}
