@@ -1,0 +1,23 @@
+import java.util.function.*;
+
+public class FIBuiltInClass {
+
+	public static void main(String[] args) {
+		Predicate<Integer> lowLimit=x -> x>=0;
+		Predicate<Integer> highLimit=x -> x<=100;
+		Predicate<Integer> Res = lowLimit.and(x->x<=100 );
+		System.out.println("Valid Marks? : " + Res.test(99));
+		Res = lowLimit.negate().or(highLimit.negate());
+		System.out.println("InValid Marks? : " + Res.test(99));
+		System.out.println("Valid Marks? : " + (!Res.test(99)));
+		
+		Consumer<Integer> printSq=x->System.out.println("Square of " + x + " is " + x*x);
+		Consumer<Integer> printCub=x->System.out.println("Cube of " + x + " is " + x*x*x);
+		System.out.println("Square Consumer.accept(5): "); 
+		printSq.accept(5);
+		Consumer<Integer> printOp=printSq.andThen(printCub);
+		System.out.println("Square and Cube Consumer.accept(5): "); 
+		printOp.accept(5);
+	}
+
+}
