@@ -1,0 +1,95 @@
+import java.util.*;
+class A
+{
+	int x;
+	public A(){}
+	public A(int x){this.x=x;}
+	
+	public H fnA2(){
+		System.out.println("A("+x+ "): Pl speak H(" + (x+2)+ ")");
+		return new H(x+2);
+	}
+	public H fnA(){
+		System.out.println("A: Pl speak H");
+		return new H();
+	}
+}
+class H{
+	int x;
+	public H(){}
+	public H(int x){this.x=x;}
+	public RR fnH(){
+		System.out.println("H: Pl speak RR");
+		return new RR();
+	}
+	public RR fnH2(){
+		System.out.println("H("+x+ "): Pl speak RR(" + (x+10)+ ")");
+		return new RR(x+10);
+	}
+}
+class RR{
+	int x;
+	public RR(){}
+	public RR(int x){this.x=x;}
+	public R fnRR(){
+		System.out.println("RR: Pl speak R");
+		return new R();
+	}
+	public R fnRR2(){
+		System.out.println("RR("+x+ "): Pl speak R(" + (x+3)+ ")");
+		return new R(x+3);
+	}
+	
+}
+class R{
+	int x;
+	public R(){}
+	public R(int x){this.x=x;}
+	public void fnR(){
+		System.out.println("R: Good Morning ALL");
+	}
+	public int fnR2(){
+		System.out.println("R: Good Morning " + x + " times");
+		return x*x;
+	}
+
+}
+
+class RA{
+	public RA fn1(){
+		System.out.println("I am an Intermediate fn: fn1() called by RA");
+		return new RA();
+	}
+	public RA fn2(){
+		System.out.println("I am an Intermediate fn: fn2() called by RA");
+		return new RA();
+	}
+	public void fn3(){
+		System.out.println("I am a Terminal fn: fn3() called by RA");
+	}
+}
+public class Main {
+    public static void main(String[] args) {
+//    	A a=new A(); 
+//    	H h=a.fnA();
+//    	RR rr=h.fnH();
+//    	R r=rr.fnRR();
+//    	r.fnR();
+    	
+//    	A a2=new A(5); 
+//    	H h2=a2.fnA2();
+//    	RR rr=h2.fnH2();
+//    	R r=rr.fnRR2();
+//    	r.fnR2();
+    	
+    	//method chaining
+    	new A().fnA().fnH().fnRR().fnR();
+    	int x=new A(5).fnA2().fnH2().fnRR2().fnR2();
+    	System.out.println("Return value from the chain(5): " + x);
+    	
+    	
+    	//Class calling itself
+    	new RA().fn2().fn1().fn2().fn1().fn3();
+        
+    }
+}
