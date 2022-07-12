@@ -1,4 +1,5 @@
 import java.util.function.*;
+import java.util.*;
 
 public class FIBuiltInClass {
 
@@ -26,6 +27,11 @@ public class FIBuiltInClass {
 		
 		System.out.println(pSqCu.apply(5));
 		System.out.println(pCuSq.apply(5));
+		
+		Supplier<Integer> sup100 = ()->100;
+		System.out.println("Supplier giving 100 as interger : " + sup100.get());
+		Supplier<Date> curDate = Date::new;
+		System.out.println("Supplier giving current date : " + curDate.get());
 		
 		
 	}
