@@ -1,0 +1,25 @@
+class AgeException extends Exception{ //checked Exception
+	public AgeException(){}
+	public AgeException(String s){super("Age Invalid Exception: " + s);}
+}
+
+class ValidateAge{
+	public static void ValidateAge(int age) throws AgeException{
+		if(age<0)
+			throw new AgeException("Ghost's Age");
+	}
+}
+public class ExceptClass1 {
+
+	public static void main(String[] args) {
+		int age=-10;
+		try {
+			ValidateAge.ValidateAge(age);
+		} catch (AgeException e) {
+			System.out.println(e);
+		}
+
+		System.out.println("Continue in my code...");
+	
+	}
+}
