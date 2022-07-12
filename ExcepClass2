@@ -1,0 +1,48 @@
+import java.util.*;
+class Resource{
+	public Resource(){
+		System.out.println("Switch on the resource");
+	}
+	public void fn(){
+		System.out.println("Functioning of the resource");
+	}
+	public void switchOff(){
+		System.out.println("Switch off the resource");
+	}
+}
+
+public class ExceptClass1 {
+	public static int fn(Resource r){
+		Scanner sc = new Scanner(System.in);
+		r.fn();
+		int[] a=new int[3];
+		System.out.println("Enter the numerator for division: ");
+		a[0] = sc.nextInt();
+		System.out.println("Enter the denomenator for division: ");
+		a[1] = sc.nextInt();
+		try {
+			a[2]=a[0]/a[1];
+			return a[2];
+		} 
+		catch (ArithmeticException e) {
+			System.out.println(e);
+			return 0;
+		}
+		catch(IndexOutOfBoundsException e){
+			System.out.println(e);
+			return -1;
+		}
+		finally{
+			r.switchOff();
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		int res=fn(new Resource());
+		System.out.println("Result : " + res);
+		
+		System.out.println("Continue in my code...");
+	}
+
+}
