@@ -1,0 +1,27 @@
+class myResource implements AutoCloseable {
+	String name;
+	public myResource(String n) {
+		name=n;
+		System.out.println(n + " Resource startup...");
+	}
+	public myResource() {System.out.println(" Resource startup...");}
+	public void fn() {
+		System.out.println("Fn for the resource: " + name);
+	}
+
+	public void close() {
+		System.out.println(name + " Resource shutting down..");
+	}
+}
+
+public class TryWithRes {
+	public static void main(String[] args) {
+		try (myResource m1 = new myResource("Res1"); myResource m2=new myResource("Res2")) {
+			m1.fn();
+			int x=100/0;
+			System.out.println(" x = " + x);
+		}
+		catch(Exception e){System.out.println(e);}
+		System.out.println("Code continues...");
+	}
+}
