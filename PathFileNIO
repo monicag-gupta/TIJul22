@@ -1,3 +1,27 @@
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+ 
+public class PathFileNIO {
+  public static void main(String args[]) {
+    Path filePath = Paths.get("/Monica/test.txt");
+    //Is file readable
+    System.out.println("Is file readable: " + Files.isReadable(filePath));
+    //Is file writable
+    System.out.println("Is file writable: " + Files.isWritable(filePath));
+    //Is file executable
+     System.out.println("Is file executable: " + Files.isExecutable(filePath));
+  }
+}
+
+
+
+
+
+
+
+
+
 import java.io.IOException;
 import java.nio.file.*;
 public class PathFileNIO {
