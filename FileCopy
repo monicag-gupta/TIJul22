@@ -7,6 +7,58 @@ public class FileCopy {
 					.println("Usage: java FileCopy <source file> <destination>");
 		else {
 			try {
+				FileInputStream from=new FileInputStream(args[0]);
+				FileOutputStream to=new FileOutputStream(args[1]);
+				byte[] buffer = new byte[4096];
+				int bytes_read;
+				while ((bytes_read = from.read(buffer)) != -1)
+					to.write(buffer, 0, bytes_read);
+				System.out.println("Copy Done!");
+				from.close();
+				to.close();
+				
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+			}
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.io.*;
+
+public class FileCopy {
+	public static void main(String[] args) {
+		if (args.length != 2)
+			System.err
+					.println("Usage: java FileCopy <source file> <destination>");
+		else {
+			try {
 				copy(args[0], args[1]);
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
