@@ -1,0 +1,42 @@
+class Printer implements Runnable{
+	String name;
+	Printable P;
+	public Printer(String n, Printable p1){name=n;P=p1;}
+	public Printer(){}
+	public void run(){
+		System.out.println("At " + name + " : ");
+		P.document();
+	}
+}
+class Printable{
+	String name;
+	public Printable(){}
+	public Printable(String n){name=n;}
+	public void document(){
+		System.out.println(name + " is being printed at stage 1");
+		for(int i=0;i<=100000;i++);
+		System.out.println(name + " is being printed at stage 2");
+		for(int i=0;i<=100000;i++);
+		System.out.println(name + " is being printed at stage 3");
+	}
+	
+}
+
+public class ThreadEx2 { 		
+        public static void main(String [] args  ) {
+        		Printable p1=new Printable("Word");
+        		Printable p2=new Printable("PDF");
+        		Printer p11=new Printer("HP",p1);
+        		Printer p12=new Printer("Laser",p1);
+        		Printer p13=new Printer("DotMatrix",p1);
+        		
+        		Thread t1=new Thread(p11);
+        		Thread t2=new Thread(p12);
+        		Thread t3=new Thread(p13);
+        		
+        		t1.start();
+        		t2.start();
+        		t3.start();
+       }
+}
+
