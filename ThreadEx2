@@ -29,14 +29,22 @@ public class ThreadEx2 {
         		Printer p11=new Printer("HP",p1);
         		Printer p12=new Printer("Laser",p1);
         		Printer p13=new Printer("DotMatrix",p1);
-        		
+        		Printer p21=new Printer("HP",p2);
+        		Printer p22=new Printer("Laser",p2);
+        		Printer p23=new Printer("DotMatrix",p2);
         		Thread t1=new Thread(p11);
         		Thread t2=new Thread(p12);
         		Thread t3=new Thread(p13);
+        		Thread t4=new Thread(p21);
+        		Thread t5=new Thread(p22);
+        		Thread t6=new Thread(p23);
         		
         		t1.start();
         		t2.start();
         		t3.start();
+        		t4.start();
+        		t5.start();
+        		t6.start();
        }
 }
 
