@@ -1,0 +1,47 @@
+final class IA{
+	private int x;
+	private MB mb=new MB();
+	public int getX(){
+		return x;
+	}
+	public MB getMb(){
+		MB mb2=new MB();
+		mb2.setX(mb.getX());
+		return mb2;
+	}
+	public IA(int x, MB mb){
+		this.x=x;
+		this.mb.setX(mb.getX());
+	}
+	
+	
+}
+class MB{
+	int x;
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+}
+public class ImmutabilityClass {
+
+	public static void main(String[] args) {
+		int x=5;
+		MB b=new MB();
+		b.setX(10);
+		IA a=new IA(x,b);
+		System.out.println("Immutable Object: " + a.getX() + " " + a.getMb().getX());
+		x=10;
+		b.setX(15);
+		System.out.println("Immutable Object: " + a.getX() + " " + a.getMb().getX());
+		a.getMb().setX(90);
+		System.out.println("Immutable Object: " + a.getX() + " " + a.getMb().getX());
+
+	}
+
+}
