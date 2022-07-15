@@ -3,11 +3,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main extends TimerTask {
+	String n;
+	public Main(String n){
+		this.n=n;
+	}
 	@Override
 	public void run() {
-		System.out.println("Timer task started at:" + new Date());
+		System.out.println(n + " Timer task started at:" + new Date());
 		completeTask();
-		System.out.println("Timer task finished at:" + new Date());
+		System.out.println(n + " Timer task finished at:" + new Date());
 	}
 
 	private void completeTask() {
@@ -20,14 +24,17 @@ public class Main extends TimerTask {
 	}
 
 	public static void main(String args[]) {
-		Main timerTask = new Main();
+		Main timerTask = new Main("Task1");
 		// running timer task as daemon thread
 		Timer timer = new Timer(true);
 		timer.scheduleAtFixedRate(timerTask, 0, 10 * 100);
 		System.out.println("TimerTask started");
 		// cancel after sometime
 		try {
-			Thread.sleep(12000);
+			for(int i=1;i<=12;i++){
+				System.out.println("Main is sleeping for : " + i + "times!");
+				Thread.sleep(i*100);
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
