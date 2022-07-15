@@ -17,3 +17,32 @@ public class InternationalizationDemo {
 				+ bundle.getString("reply"));
 	}
 }
+
+
+
+/*
+
+In src folder directly create as a file:
+MessageBundle_en_US.properties
+contens:
+greeting=Hello, how are you?
+reply=I am fine, What about you?
+
+In src folder directly create as a file:
+MessageBundle_hi_IN.properties
+greeting=Hallo, apka Kya khabar hai?
+reply=Mera Khabar achcha hai, apka Kya khabar hai?
+
+InternationalizationDemo.java
+See Above code
+
+
+Output:
+Message in en_US: Hello, how are you?
+Message in en_US: I am fine, What about you?
+Message in hi_IN: Hallo, apka Kya khabar hai?
+Message in hi_IN: Mera Khabar achcha hai, apka Kya khabar hai?
+
+*/
+
+
