@@ -1,3 +1,37 @@
+package com.security;	
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;	
+import java.security.PublicKey;
+import java.security.Signature;	
+import javax.crypto.Cipher;
+public class CipherDecrypt {
+   public static void main(String args[]) throws Exception{
+      Signature sign = Signature.getInstance("SHA256withRSA");
+      KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
+      keyPairGen.initialize(2048);
+      KeyPair pair = keyPairGen.generateKeyPair();   
+      PublicKey publicKey = pair.getPublic();  //Getting the public key from the key pair 
+      Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding"); //Creating a Cipher object
+      cipher.init(Cipher.ENCRYPT_MODE, publicKey); //Initializing a Cipher object
+      byte[] input = "Hello World".getBytes();	  
+      cipher.update(input); //Add data to the cipher
+      byte[] cipherText = cipher.doFinal();	  //encrypting the data
+      System.out.println( new String(cipherText, "UTF8"));
+      //Initializing the same cipher for decryption
+      cipher.init(Cipher.DECRYPT_MODE, pair.getPrivate());
+      //Decrypting the text
+      byte[] decipheredText = cipher.doFinal(cipherText);
+      System.out.println(new String(decipheredText));
+   }	
+ }
+
+
+
+
+
+
+
+
 package com.security;
 public class SecurityManagerDemo {
 	public static void main(String[] args) {
