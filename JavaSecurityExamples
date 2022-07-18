@@ -1,4 +1,4 @@
-package com.security;	
+package com.security12;	
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;	
 import java.security.PublicKey;
@@ -32,7 +32,7 @@ public class CipherDecrypt {
 
 
 
-package com.security;
+package com.security12;
 public class SecurityManagerDemo {
 	public static void main(String[] args) {
 		// Security manager is Enabled, read/write access to "java.home" system
@@ -54,7 +54,7 @@ public class SecurityManagerDemo {
 
 
 
-package com.security;
+package com.security12;
 public class SecurityManagerDemo {
 	public static void main(String[] args) {
 		/*	* No security manager is enabled by default. Thus all security checks to
