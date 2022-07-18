@@ -1,0 +1,19 @@
+package com.security;
+public class SecurityManagerDemo {
+	public static void main(String[] args) {
+		/*	* No security manager is enabled by default. Thus all security checks to
+		 * protected resources and operations are disabled. In order to enable security
+		 * checks, the security manager must be enabled also	 */
+		// Security manager is disabled, read/write access to "java.home" system
+		// property is allowed
+		try {
+			System.setProperty("java.home", "123456");
+			System.out.println("java.home is : " + System.getProperty("java.home"));
+			// Enable the security manager
+			/* SecurityManager securityManager = new SecurityManager();
+			 * System.setSecurityManager(securityManager); System.setProperty("java.home",
+			 * "123456");			 */
+		} catch (Exception ace) {
+			System.out.println("Write access to the java.home system property is not allowed!");
+		}
+	}	}
