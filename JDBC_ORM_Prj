@@ -1,0 +1,140 @@
+Emp.java
+
+public class Emp {
+	int id;
+	String name;
+	int age;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	@Override
+	public String toString() {
+		return "\nEmp [id=" + id + ", name=" + name + ", age=" + age + "]";
+	}
+	public Emp(int id, String name, int age) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
+	public Emp(){}
+}
+
+
+
+
+
+EmpDAO.java
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.*;
+
+public class EmpDAO {
+	Connection con = null;
+	Statement stmt = null;
+
+	public EmpDAO() {
+	}
+
+	public void con() throws Exception {
+
+		Class.forName("com.mysql.jdbc.Driver");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb",
+				"root", "password");
+		// here javadb is database name, root is username and password
+		stmt = con.createStatement();
+
+	}
+
+	public int insert(Emp e) {
+		int r = 0;
+		try {
+			con();
+			r = stmt.executeUpdate("insert into emp values(" + e.getId()
+					+ ", '" + e.getName() + "', " + e.getAge() + ");");
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return r;
+	}
+	public int delete(Emp e) {
+		int r = 0;
+		try {
+			con();
+			r = stmt.executeUpdate("delete from emp where id = " + e.getId());
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return r;
+	}
+	public int update(Emp e) {
+		int r = 0;
+		try {
+			con();
+			r = stmt.executeUpdate("update emp set name='" + e.getName() +
+					"', age=" + e.getAge() + " where id=" + e.getId());
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return r;
+	}
+	public List<Emp> read(){
+		List<Emp> emps=new ArrayList<>();
+		try {
+			con();
+			ResultSet rs = stmt.executeQuery("select * from emp");
+			while (rs.next())
+				emps.add(new Emp(rs.getInt(1), rs.getString(2),rs.getInt(3)));
+		
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return emps;
+	}
+
+}
+
+
+
+
+Client.java
+
+import java.util.*;
+public class Client {
+
+	public static void main(String[] args) {
+		Emp e;
+		
+		e=new Emp(106, "Ron", 20);
+		EmpDAO edao=new EmpDAO();
+		//System.out.println(edao.insert(e) + " Record Inserted");
+		e.setName("RonWislley");
+		//System.out.println(edao.update(e) + " Record Updated");
+//		System.out.println(edao.delete(e) + " Record deleted");
+		List<Emp> emps=edao.read();
+		System.out.println(emps);
+		
+
+	}
+
+}
