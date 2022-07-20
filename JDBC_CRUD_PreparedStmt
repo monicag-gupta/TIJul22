@@ -1,3 +1,5 @@
+Insert.java
+
 import java.sql.*;
  public class Insert {
 	public static void main(String[] args) {
@@ -17,3 +19,6 @@ import java.sql.*;
  		} catch (Exception ex) {
 			ex.printStackTrace();			}		
 	}	}
+
+
+
