@@ -1,0 +1,238 @@
+Package: com.hibernate
+
+HibernateUtil.java    // under src/project package
+
+package com.hibernate;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+public class HibernateUtil {
+	final static StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+			.configure().build();
+	private static SessionFactory sessionFactory = null;
+
+	private static SessionFactory buildSessionFactory() {
+		try {
+			sessionFactory = new MetadataSources(registry).buildMetadata()
+					.buildSessionFactory();
+			return sessionFactory;
+		} catch (Exception e) {
+			StandardServiceRegistryBuilder.destroy(registry);
+			throw new ExceptionInInitializerError(e);
+		}
+	}
+
+	public static SessionFactory getSessionFactory() {
+		if (sessionFactory == null) {
+			buildSessionFactory();
+		}
+		return sessionFactory;
+	}
+}
+
+
+
+
+
+hibernate.cfg.xml // under src folder directly (Note : Do not keep this file in any package)
+
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC   "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory> <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/javadb</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">5</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
+</property><!-- SQL dialect -->
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="show_sql">true</property> <!-- Echo all executed SQL to stdout -->
+ 	       <property name="hbm2ddl.auto">create</property>
+       <!-- Mention here all the model classes along with their package name -->
+		<mapping class="com.hibernate.Student"/>
+    </session-factory>
+</hibernate-configuration>
+
+
+
+Student.java  //in project package com.hibernate
+
+package com.hibernate;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "STUDENT")
+public class Student implements Serializable {
+	private static final long serialVersionUID = 8633415090390966715L;
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@Column(name = "STUDENT_NAME")
+	private String studentName;
+	@Column(name = "ROLL_NUMBER")
+	private int rollNumber;
+	@Column(name = "COURSE")
+	private String course;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+
+	public int getRollNumber() {
+		return rollNumber;
+	}
+
+	public void setRollNumber(int rollNumber) {
+		this.rollNumber = rollNumber;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
+}
+
+
+
+CreateStudent.java //in com.hibernate
+
+package com.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+public class CreateStudent {
+	public static void main(String[] args) {
+		// Create student entity object
+		Student student = new Student();
+		student.setStudentName("Ishu2"); // Ishu1, Ishu3
+		student.setRollNumber(02); // 01, 03
+		student.setCourse("MCA"); // BE BTech
+		// Create session factory object
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		// getting session object from session factory
+		Session session = sessionFactory.openSession();
+		// getting transaction object from session object
+		session.beginTransaction();
+		session.save(student);
+		System.out.println("Inserted Successfully");
+		session.getTransaction().commit();
+		session.close();
+		sessionFactory.close();
+	}
+}
+
+
+
+ReadStudent.java 
+
+package com.hibernate;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+public class ReadStudent {
+	public static void main(String[] args) {
+		// Create session factory object
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		// getting session object from session factory
+		Session session = sessionFactory.openSession();
+		// getting transaction object from session object
+		session.beginTransaction();
+		List<Student> students = new ArrayList<Student>();
+		for (Object oneObject : session.createQuery("FROM Student")
+				.getResultList()) {
+			students.add((Student) oneObject);
+		}
+		for (Student student : students) {
+			System.out.println("Roll Number: " + student.getRollNumber()
+					+ ", Student Name: " + student.getStudentName()
+					+ ", Course: " + student.getCourse());
+		}
+		session.getTransaction().commit();
+		sessionFactory.close();
+	}
+}
+
+
+
+
+UpdateStudent.java
+
+package com.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+public class UpdateStudent {
+	public static void main(String[] args) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Student student = (Student) session.get(Student.class, 2);
+		student.setStudentName("Ishu22"); // update where id=2
+		System.out.println("Updated Successfully");
+		session.getTransaction().commit();
+		sessionFactory.close();
+		student.setStudentName("Ishu72"); // update where id=2
+	}
+}
+
+
+
+DeleteStudent.java:
+
+package com.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+public class DeleteStudent {
+	public static void main(String[] args) {
+		// Create session factory object
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		// getting session object from session factory
+		Session session = sessionFactory.openSession();
+		// getting transaction object from session object
+		session.beginTransaction();
+		Student student = (Student) session.load(Student.class, 2);// delete
+																	// where
+																	// id=2
+		session.delete(student);
+		System.out.println("Deleted Successfully");
+		session.getTransaction().commit();
+		sessionFactory.close();
+	}
+}
+
+
+
+
