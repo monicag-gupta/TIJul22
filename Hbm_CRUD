@@ -50,7 +50,7 @@ hibernate.cfg.xml // under src folder directly (Note : Do not keep this file in 
         <property name="connection.password">password</property>
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">5</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect
 </property><!-- SQL dialect -->
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
