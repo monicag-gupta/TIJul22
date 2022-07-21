@@ -56,6 +56,8 @@ hibernate.cfg.xml // under src folder directly (Note : Do not keep this file in 
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
         <property name="show_sql">true</property> <!-- Echo all executed SQL to stdout -->
  	       <property name="hbm2ddl.auto">create</property>
+	       <!--<property name="hbm2ddl.auto">update</property>-->
+	       <!--first run : hbm2dll should be create, next time onwards it should be update-->
        <!-- Mention here all the model classes along with their package name -->
 		<mapping class="com.hibernate.Student"/>
     </session-factory>
