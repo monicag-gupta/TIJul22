@@ -47,7 +47,7 @@ hibernate.cfg.xml // under src folder directly (Note : Do not keep this file in 
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/javadb</property>
         <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.password">password</property>
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">5</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
