@@ -1,0 +1,37 @@
+class Pa{
+	public void google(){
+		System.out.println("Google company documents");
+	}
+}
+class Person extends Pa{ //encapsulation with inheritance
+	private String CC; //encapsulation with data hiding
+	protected String Ac;
+	String Almirah;
+	public String name; //abstraction
+	public void input(String C, String A, String Alm, String n ){
+		CC=C;
+		Ac=A;
+		Almirah=Alm;
+		name=n;
+	}
+	public void display(){
+		System.out.println("Person details: \n");
+		System.out.println("Name: " + name);
+		System.out.println("Almirah: " + Almirah);
+		System.out.println("Bank Account: " + Ac);
+		System.out.println("CreditCard Info: " + CC);
+	}	
+}
+public class OOP {
+
+	public static void main(String[] args) {
+		Person Sid=new Person();
+		
+		Sid.input("Credit limit is 5L", "Banking on ICICI", "Full of Gold", "Siddhant");
+		System.out.println("Information for the object with name: " + Sid.name);
+		Sid.display();
+		System.out.println("Being in the same package We know about the Default Almirah: " + Sid.Almirah);
+		System.out.println("Being in the same package We know about the Protected AC: " + Sid.Ac);
+	}
+
+}
